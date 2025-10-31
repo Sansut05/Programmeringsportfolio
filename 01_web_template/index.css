@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body,
+* {
+    font-family: "Roboto";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu-wrapper{
+    position: fixed;
+    width: fit-content;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+
+}
+
+.burger-icon{
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    cursor: pointer;
+    font-size:2rem;
+    color: black;
+    z-index: 3;
+    transition: color 0.3s ease-in-out;
+
+}
+.menu-wrapper:has(.sidebar:hover) .burger-icon, .burger-icon:hover{
+    color: whitesmoke;
+}
+
+.sidebar{
+    position: relative;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 15rem;
+    background-color: black;
+    color: white;
+    padding: 4rem 1rem;
+    box-sizing: border-box;
+    transition: left 0.3s ease-in-out;
+    
+}
+
+.burger-icon:hover + .sidebar,.sidebar:hover{
+    left: 0;
+    box-shadow: 0 0 30px 5px black;
+}
+
+.sidebar a {
+    cursor: pointer;
+font-size: 1.5rem;
+display: block;
+text-decoration: none;
+color: white;
+margin: 1rem 0;
+opacity: 0.5;
+ transition: opacity 0.70s ease-in-out;
+ transform: 0,70s ease-in-out;
+ 
+}
+
+.sidebar a:hover{
+    opacity: 1;
+    transform: translateX(0.5rem);
+    filter: drop-shadow(0 0 10px white);
+   
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* grid layout  */
+    display: grid;
+    place-items: center;
+    /* position fixed - klassen "show" viser pages */
+    position: fixed;
+    left: -100vw;
+    transition: 1s ease-in-out all;
+}
+
+.show {
+    left: 0;
+}
+
+/*all divs inside pages, are treated as full width grids*/
+.page div {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+}
+
+h1{
+    font-weight:300;
+    font-size:3rem;
+}
+
+#page2 {
+    grid-template-rows: 1fr 3fr;
+}
+
+#page2 .top {
+    background-color: lightskyblue;
+}
+
+#page2 .bottom {
+    background-image: url(./assets/city.jpg);
+    background-size: cover;
+}
+
+#page3{
+    grid-template-columns: 1fr 1fr;
+
+}
+#page3  .left{
+    grid-template-rows: 1fr 3fr;
+    background-color: hotpink;
+}
+
+#page3 .left .bottom{
+    background-color: black;
+    color: white;
+}
+#page3 .right{
+    background-color: aqua;
+}
+
+#page3 .right .box{
+    height: 50%;
+    width: 80%;
+    background-color: blueviolet;
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+}
+#page3 .right .box .bottom{
+    background-image: url(./assets/city.jpg);
+    background-size: cover;
+}
+
+#page4{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: blue;
+
+}
+#page4 .left{
+    background-color: brown;
+}
+
+#page4 .midright{
+    background-color: chartreuse;
+}
+
+#page4 .right{
+background-color: darkgreen;
+}
+
+#page5{
+    grid-template-columns: 1fr 1fr;
+}
+#page5 .right{
+    grid-template-rows: 0,5fr 1fr;
+}
+#page5 .right .top{
+    background-color: hotpink;
+}
+
+#page5 .right .bottom{
+    background-color: black;
+    color: white;
+}
+#page6{
+    grid-template-columns: 2fr 1fr;
+}
+#page6 .right{
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;  
+}
+#page6 .right .top{
+    background-color: aquamarine;
+}
+#page6 .right .topmid{
+    background-color: blue;
+}
+
+#page6 .right .mid{
+    background-color: black;
+    color: whitesmoke;
+}
+#page6 .right .midbottom{
+    background-color: darkgreen;
+}
+#page6 .right .bottom{
+    background-color: darkblue;
+}
+
+#Page7{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: black;
+}
+
+#Page7 .top.left{
+    background-image: url(./assets/warhammernightlords.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: white;
+    background-position: center;
+}
+
+#Page7 .top.right{
+    background-image: url(./assets/tarn.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: white;
+    background-position: center;
+}
+
+#Page7 .bottom.left{
+    background-image: url(./assets/slipknot-logo.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: white;
+    background-position: center;
+}
+
+#Page7 .bottom.right{
+    background-image: url(./assets/overwatch.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: white;
+    background-position: center;
+}
+
+#page8{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 1.5fr;
+}
+
+#page8 .top{
+    grid-column: 1/3; 
+
+}
+
+#page8 .topmid{
+    grid-column: 1/3; 
+}
+
+#page8 .bottom.left{
+    grid-column: 1/2;
+    grid-row:3/4;  
+    background-color: blue;
+}
+
+#page8 .bottom.right {
+    grid-template-rows: 0.5fr 0.5fr 0.5fr; 
+    background-color: lightgoldenrodyellow;
+}
+
+
+#page9{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem 1rem;
+    padding: 1rem;
+}
+
+#page9 .top.right, #page9 .bottom.left{
+    background-color: yellow;
+    color: hotpink;
+}
+
+#page9 .top.left, #page9 .bottom.right{
+    background-color: darkblue;
+    color: crimson;
+}
+
+
+
