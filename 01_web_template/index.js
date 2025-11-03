@@ -1,9 +1,10 @@
-var currentPage = '#Page7'
+var currentPage = '#Page5'
 
 
 function setup(){
     console. log('P5 setup kaldt ')
  //hent all side som et array
+ shiftPage(currentPage)
  var allPages = selectAll('.page')
  //løb listen igemmen en for en 
     allPages.map(

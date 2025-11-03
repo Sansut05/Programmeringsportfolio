@@ -177,6 +177,21 @@ background-color: darkgreen;
 #page5 .right .bottom{
     background-color: black;
     color: white;
+    overflow: hidden;
+    height: 50vh;
+    position: relative;
+}
+#page5 .right .bottom video{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+
+}
+#page5 .right .bottom #over{
+    position: absolute;
+    display: grid;
+    place-items: center;
 }
 #page6{
     grid-template-columns: 2fr 1fr;
