@@ -1,4 +1,4 @@
-var currentPage = '#page4'
+var currentPage = '#page2'
 
 
 function setup(){
