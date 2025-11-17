@@ -188,10 +188,30 @@ background-color: darkgreen;
     height: 100%;
 
 }
-#page5 .right .bottom #over{
+#page5 .right .bottom #overlay{
     position: absolute;
     display: grid;
     place-items: center;
+}
+
+#videoButton{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding:0.5rem 1rem 0.5rem 1rem;
+    border-radius: 1rem;
+    background-color: rgba(100,100,100, 0.9);
+    color: white;
+    border: 1px solid lightgray;
+    z-index: 1000;
+    transition: 0.3s ease-in-out all;
+    cursor: pointer;
+
+}
+
+#videoButton:hover{
+    background-color: white;
+    color: black;
 }
 #page6{
     grid-template-columns: 2fr 1fr;

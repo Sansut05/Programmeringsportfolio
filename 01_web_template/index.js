@@ -1,10 +1,29 @@
 var currentPage = '#Page5'
+var videoButton, theVideo
+var videoPlaying = true
 
 
 function setup(){
     console. log('P5 setup kaldt ')
  //hent all side som et array
  shiftPage(currentPage)
+//videoen
+theVideo = select('#theVideo')
+ // video control button 
+ videoButton = select('#videoButton')
+ videoButton.mousePressed(()=>{
+    //console.log('button pressed')
+    if(videoPlaying){
+        theVideo.pause()
+        videoPlaying = false
+
+    }else{
+        theVideo.play()
+        videoPlaying = true
+    }
+
+ })
+
  var allPages = selectAll('.page')
  //løb listen igemmen en for en 
     allPages.map(

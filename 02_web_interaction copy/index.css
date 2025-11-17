@@ -135,11 +135,11 @@ h1{
     color: white;
 }
 #page2{
-    overflow: scroll;
+    overflow-y: scroll;
 
 }
 .parallax{
-    height: 100vh;
+    min-height:100vh;
     background-attachment: fixed;
     background-size: cover;
 }

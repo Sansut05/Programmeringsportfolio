@@ -1,4 +1,4 @@
-var currentPage = '#page2'
+var currentPage = '#page5'
 
 
 function setup(){
@@ -18,6 +18,15 @@ function setup(){
         theButton.html('i am not sure who i am')
     }
  } )
+
+ //p5 button
+ var myButton = createButton('Button created with javascrrip')
+ // lige den ind i sidde 5
+ select('#page5').child(myButton)
+ //lav en eveent listener
+ myButton.mousePressed(()=>{
+    shiftPage('#page1')
+ })
 
  //drop dows
  var theDropdown = select('#theDropdown')
