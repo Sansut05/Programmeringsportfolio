@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web app template med P5.js</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
+</head>
+<body>
+    <div class="menu-wrapper">
+        <div class="burger-icon">☰</div>
+        <div class="sidebar">
+          
+        </div>
+    </div>
+    <main>
+        <div title="Forside" class="page show" id="page1">
+            <div class="top">
+                <h1>overwatch 2</h1>
+            </div>
+            <div class="bottom">
+            </div>
+        </div>
+        
+        <div class="page" id="page2" title="Fixed background">
+            <div class="scroll">
+                <div class="box">
+                    <div class="top">Titel</div>
+                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+                </div>
+            <div class="background1 parallax">
+                <h1>hej</h1>
+
+            </div>
+                <div class="box">
+                    <div class="top">Titel</div>
+                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+                    
+                </div>
+                <div class="box">
+                    <div class="top">Titel</div>
+                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+                </div>
+                <div class="box">
+                    <div class="top">Titel</div>
+                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+                </div>
+            </div>
+        </div>
+       
+
+
+            
+   
+        <div title="Heroes jeg spiller" class="page" id="page4">
+            <div class="right">
+                    <select name="theDropdown" id="theDropdown">
+                        <option value="./assets/o ow.jpg" selected> Hero selction</option>
+                        <option value="./assets/R ow.jpg">Reinhard</option>
+                        <option value="./assets/b ow.jpg"> Brigitte</option>
+                        <option value="./assets/g ow.jpg">Genji</option>
+                    </select>
+                </div>
+                <img id="bild" src="./assets/o ow.jpg"  >
+                
+                
+            </div>
+           
+            
+        </div>
+        <div title="I hate this task" class="page" id="page5">
+            <div class=" top">
+
+            </div>
+            <div class="bottom" >
+                <video controls id="theVideo" >
+                <source src="assets/ow_v.mp4" type="video/mp4" autoplay muted loop>
+                Your browser does not support html 5 video.
+
+                </video>
+
+                <button id="videoButton">Play/Pause</button>
+            </div>
+
+        </div>
+    </main>
+     <script src="./index.js"></script>
+</body>
