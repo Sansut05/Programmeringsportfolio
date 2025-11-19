@@ -210,6 +210,9 @@ h1{
     grid-template-rows: 1fr 1fr;
     height: 100vh;
 }
+#page5 .top{
+    background-color: lightyellow;
+}
 
 #page5 .bottom {
     position:relative;
