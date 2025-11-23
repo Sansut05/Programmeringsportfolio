@@ -1,5 +1,7 @@
-var currentPage = '#page2'
+var currentPage = '#page3'
 
+var mouseX = 0
+var mouseY = 0
 
 function setup(){
     console. log('P5 setup kaldt ')
@@ -38,3 +40,16 @@ function shiftPage(newPage){
     currentPage = newPage
 }
 
+document.addEventListener("mousemove", (e)=> {
+    mouseX = e.clientY
+    mouseY = e.clientY
+    console.log(mouseX, mouseY)
+
+    screenWidth = window.innerWidth
+    screenHeight = window.innerHeight
+
+
+    document.querySelectorAll(".parallax-mouse").forEach((elem) =>{
+        elem.Style.transform = `translate(${mouseX - screenWidth / 2}px, ${mouseY - screenHeight / 2}px)`
+    })
+})

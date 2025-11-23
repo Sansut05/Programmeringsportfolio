@@ -11,7 +11,7 @@ function setup(){
  shiftPage(currentPage)
 
   //Videon
-    theVideo = select('#theVideo').elt
+    theVideo = select('#theVideo')
 
     //Video controll button
     videoButton = select('#videoButton')

@@ -8,84 +8,145 @@
     <link rel="stylesheet" href="./index.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
 </head>
+
 <body>
     <div class="menu-wrapper">
         <div class="burger-icon">☰</div>
-        <div class="sidebar">
-          
-        </div>
+        <div class="sidebar"></div>
     </div>
+
     <main>
+
+        <!-- PAGE 1 -->
         <div title="Forside" class="page show" id="page1">
             <div class="top">
                 <h1>overwatch 2</h1>
             </div>
-            <div class="bottom">
-            </div>
+            <div class="bottom"></div>
         </div>
-        
+
+        <!-- PAGE 2 med parallax -->
         <div class="page" id="page2" title="metas">
             <div class="scroll">
-                <div class="box">
-                    <div class="top">Titel</div>
-                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
-                </div>
-            <div class="background1 parallax">
-                <h1>hej</h1>
 
-            </div>
-                <div class="box">
-                    <div class="top">Titel</div>
-                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
-                    
+                <div class="background1 parallax">
+                    <h1>Overwatch</h1>
                 </div>
-                <div class="box">
-                    <div class="top">Titel</div>
-                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+
+                <!-- Parallax 1 -->
+                <div class="background1 parallax">
+                    <h1>Meta</h1>
                 </div>
+                
+                <!-- Box 1 -->
                 <div class="box">
-                    <div class="top">Titel</div>
-                    <div class="bottom">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis ab aut reprehenderit cupiditate consequatur! Nesciunt maxime necessitatibus, sint iste, ex aperiam inventore ipsam beatae sunt quaerat repellat magnam rerum sit.</div>
+                    <img src="./assets/ny ow.jpg" alt="">
+                    <div>
+                        <div class="top">Hvad er Meta?</div>
+                        <div class="bottom">
+                            Meta er akronyn for 'most effective tactics available'. Altså de bedste valg man kan foretage sig i spillet for at 
+                            vinde spillet. Det kan fx være hvilke helte man bør spille.
+                        </div>
+                    </div>
                 </div>
+
+
+                
+                <!-- Parallax 3 -->
+                <div class="background1 parallax">
+                    <h1>GOATS</h1>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="box">
+                    <img src="./assets/ny ow.jpg" alt="">
+                    <div>
+                        <div class="top">GOATS</div>
+                        <div class="bottom">
+                           GOATS er den berømte af alle Overwatch metats, dels fordi den varede et helt år og overflødiggjorde en hel klasse i spillet.
+                           GOATS var en bestem holdopstilloing, der bestod 3 tanks og 3 supports, hvor den vigtigste var Brigitte.
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Parallax 4 -->
+                <div class="background2 parallax2">
+                    <div class="box">
+                        <div class="tekst">
+                            <h1>Brigitte</h1>
+                            <p>AKA</p>
+                            <p>The hero who broke the game!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parallax 3 -->
+                <div class="background3 parallax">
+                    <div class="box">
+                        <div class="tekst2">
+                            <h1>Orisa meta</h1>
+                        </div>   
+                    </div>
+                </div>
+                
+                <!-- Box 2 -->
+                <div class="box">
+                    <img src="./assets/ny ow.jpg" alt="">
+                    <div>
+                        <div class="top">Orisa Meta</div>
+                        <div class="bottom">
+                           I Overwatch 2 ændrede Blizzard Orisas karakter. De fjernede hendes skjold for at svække hende og gør hende sjovere at spille. 
+                           Problemet var at de havde designet hende til at være næsten udødelig hvis du spillede hende rigtig.
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Parallax 4 -->
+                <div class="background3 parallax">
+                    <div class="box">
+                        <div class="tekst">
+                            <h1>Orisa</h1>
+                            <p>AKA</p>
+                            <p>Hesten!</p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-       
 
-
-            
-   
+        <!-- PAGE 4 -->
         <div title="Heroes jeg spiller" class="page" id="page4">
             <div class="right">
-                    <select name="theDropdown" id="theDropdown">
-                        <option value="./assets/o ow.jpg" selected> Hero selction</option>
-                        <option value="./assets/R ow.jpg">Reinhard</option>
-                        <option value="./assets/b ow.jpg"> Brigitte</option>
-                        <option value="./assets/g ow.jpg">Genji</option>
-                    </select>
-                </div>
-                <img id="bild" src="./assets/o ow.jpg"  >
-                
-                
+                <select name="theDropdown" id="theDropdown">
+                    <option value="./assets/o ow.jpg" selected>Hero selection</option>
+                    <option value="./assets/R ow.jpg">Reinhard</option>
+                    <option value="./assets/b ow.jpg">Brigitte</option>
+                    <option value="./assets/g ow.jpg">Genji</option>
+                </select>
             </div>
-           
-            
+
+            <img id="bild" src="./assets/o ow.jpg">
         </div>
+
+        <!-- PAGE 5 -->
         <div title="I hate this game" class="page" id="page5">
-            <div class=" top">
+            <div class="top">
                 <h1>Overwatch 2 Orisa meta brought to you by Flats</h1>
-
             </div>
-            <div class="bottom" >
-                <video controls id="theVideo" >
-                <source src="assets/ow_v.mp4" type="video/mp4" autoplay muted loop>
-                Your browser does not support html 5 video.
-
+            <div class="bottom">
+                <video controls id="theVideo">
+                    <source src="assets/ow_v.mp4" autoplay muted loop>
+                    Your browser does not support html5 video.
                 </video>
 
                 <button id="videoButton">Play/Pause</button>
             </div>
-
         </div>
+
     </main>
-     <script src="./index.js"></script>
+
+    <script src="./index.js"></script>
 </body>
+</html>

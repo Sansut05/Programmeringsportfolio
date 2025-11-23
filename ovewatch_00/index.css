@@ -89,15 +89,7 @@ opacity: 0.5;
 .show {
     left: 0;
 }
-/*all divs inside pages, are treated as full width grids*/
 
-.page div {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-
-}
 
 h1{
     font-weight:300;
@@ -111,8 +103,19 @@ h1{
 #page1 .top{
     background-color: #F4742B;
     color: whitesmoke;
-
+    display:grid;
+    place-items: center; 
+    height: 100%;
+    width: 100%;
 }
+
+
+
+#page1 > .bottom {
+    width: 100%;
+    height: 100%; 
+}
+
 
 #page1 .bottom{
     background-image: url(./assets/582078131_1903080727286416_2895861900720007584_n.jpg);
@@ -123,48 +126,181 @@ h1{
 
 .scroll{
     min-height: 100%;
-    overflow: scroll;
-    padding: 20rem;
+    overflow: auto;
+    display: flex;         
+    flex-direction: column;
+    padding: 2rem;
     gap: 2rem;
 }
 
 .box{
-    max-width: 30vw;
-    height: 100rem;
-    grid-template-rows: 1fr 8fr;
+    max-width: 50vw;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
     background-color: rgba(0,0,0,0.6);
     border-radius: 1rem;
-    padding: 2rem;
-    
+    padding: 2rem;  
 }
+
+
+.parallax {         
+  display: flex;                 
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height:30vh;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: 2;
+}
+
+.parallax2 {         
+  display: flex;                 
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height:90vh;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: 2;
+}
+
+.parallax .box {
+  display: flex;                  /* vigtig: billede + tekst side-by-side */
+  align-items: center;            /* centrer lodret */
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.25); /* let overlay for kontrast */
+  z-index: 2;                     
+}
+
+.parallax2 .box {
+  display: flex;                  /* vigtig: billede + tekst side-by-side */
+  align-items: center;            /* centrer lodret */
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.25); /* let overlay for kontrast */
+  z-index: 2;                    
+}
+
+.parallax .box .tekst {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.parallax2 .box .tekst {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.parallax > h1 {
+  color: #F4742B;
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  z-index: 2;
+}
+
+
+.parallax > h2 {
+  color: white;
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  z-index: 2;
+}
+
+.box img, .billede{
+    width: 120px;
+    height:auto;
+    border-radius: 60px;
+    object-fit: cover;
+    margin-right: 1.5rem;
+}
+
 .box .top{
     background-color:black ;
     color: white;
     border-radius: 1rem;
+    width: 650px;
+    
 }
+
 .box .bottom{
     color: white;
+    width: 650px;
 }
 
 #page2{
     overflow-y: scroll;
     background-color: #F4742B;
-    
+    display: block;
+    padding-top: 0.5rem;  
+    padding-bottom: 0.5rem;        
 
 }
-.parallax{
-    min-height:100vh;
-    background-attachment: fixed;
-    background-size: cover;
-}
+
+
 .background1{
     background-image: url(./assets/582078131_1903080727286416_2895861900720007584_n.jpg);
 }
 
-#page3 {
-     background-color: black;
-     grid-template-columns: 1fr 3fr;
-     grid-template-rows: 1fr 1fr ;
+.background2{
+    background-image: url(assets/b\ ow.jpg);
+}
+
+.background3{
+    background-image: url(./assets/Orisa.jpg);
+}
+
+
+.tekst{
+    flex: 1;
+}
+
+.tekst2{
+    flex: 1;
+    color: #F4742B;
+    margin: 0;
+    padding: 2rem 1rem;
+    text-align: center;
+    z-index: 2;
+}
+
+/* parallax billede */
+.background1 .billede {
+    width: 200px; 
+    height: auto;
+    border-radius: 10px;
+    margin-left: 15rem;
+}
+
+#theDropdown {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 8px 8px;
+    border: 5px solid white;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+#theDropdown:hover {
+    border-color: #F4742B; 
+}
+
+#page4{
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1f); 
 }
 
 #videoButton{
@@ -173,8 +309,8 @@ h1{
     left: 1rem;
     padding:0.5rem 1rem 0.5rem 1rem;
     border-radius: 1rem;
-    background-color: rgba(100,100,100, 0.9);
-    color: white;
+    background-color: #0a0a0a;
+    color: #fff;
     border: 1px solid lightgray;
     z-index: 1000;
     transition: 0.3s ease-in-out all;
@@ -186,32 +322,22 @@ h1{
     background-color: white;
     color: black;
 }
-#page3 .right .bottom video{
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 100%;
-}
 
 
-.bild{
-    width: 100vh;
-    height: 100vh;
-    object-fit: cover;
-    object-position: fixed;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
 
 #page5{
     display: grid; 
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
     height: 100vh;
 }
 #page5 .top{
-    background-color: lightyellow;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1f);
+    color: #F4742B;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+
 }
 
 #page5 .bottom {
@@ -229,7 +355,6 @@ h1{
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;           
-  display: block;
   z-index: 0;
   pointer-events: auto;         
 }
@@ -237,12 +362,12 @@ h1{
 #page5 .bottom #videoButton {
     position: absolute;
     bottom: 1rem;
-    left: 1rem;
+    right: 1rem;
     padding:0.5rem 1rem 0.5rem 1rem;
     border-radius: 1rem;
-    background-color: rgba(100,100,100, 0.9);
+    background-color: linear-gradient(135deg, #0a0a0a, #1a1a1f); 
     color: white;
-    border: 1px solid lightgray;
+    border: 1px solid #F4742B;
     z-index: 1000;
     transition: 0.3s ease-in-out all;
     cursor: pointer;
@@ -251,7 +376,7 @@ h1{
 }
 
 #page5 .bottom #videoButton:hover{
-    background-color: white;
+    background-color: #F4742B;
     color: black;
 }
 
