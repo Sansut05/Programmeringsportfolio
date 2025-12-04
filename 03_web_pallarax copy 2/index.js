@@ -6,7 +6,7 @@ var isRecording = false
 var speakInp, speakBtn
 
 function preload(){
-    otterSound = loadSound('./assets/ottersound.mp3') 
+  
     
 }
 
