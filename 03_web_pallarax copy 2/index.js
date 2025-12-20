@@ -1,10 +1,11 @@
-var currentPage = '#page4'
+var currentPage = '#page3'
 var capture 
 var otterSound, rainSound
 var recBtn, recorder, AudioFile 
 var isRecording = false
 var speakInp, speakBtn
-
+var listeInput, listeHeader, listeButton, listeContainer
+var removeListe 
 function preload(){
   
     
@@ -17,75 +18,74 @@ function setup(){
     //skift til current page 
     shiftPage(currentPage)
 
+    // vi oprett er en 
+
+    var klassen2T = ["asta", "selma", "silas", "mads", "viggo", "miilas"]
+
+    //hvor mange 
+    console.log(klassen2T.length, "elementer i lisster")
+
+    console.log(klassen2T[0], 'er den første i listen')
+    // sådan læge vi new ekal till
+    klassen2T.push("toke")
+    klassen2T.push("Lisbet")
+    klassen2T.push("john")
+    klassen2T.push("gilbert")
+    klassen2T.push("floki")
+    klassen2T.push("")
+    klassen2T.push("ludvig")
+    klassen2T.push("ludvig")
+    
+
+
+
+    console.log(klassen2T, klassen2T.length)
+
+    //såden looper vi igemm et array
+
    
 
+   
+
+        //page 2 liste basice
+
+        listeButton = select('#listeButton')
+        listeHeader = select('#listerHeader')
+        listeInput = select('#listeInput')
+        listeContainer = select('#listeContainer')
+        
+        //der et input ffeld og en knap
+       createList(klassen2T, listeContainer, 'elev')
+
+       //page3 domm binding
+       removeListe = select('#removeListe')
+       // make a list
+       var elemets = ["hest", "dog", "hamster", "php", "cangaroo", "fuck", "sebatian", "rat" ]
+       //call the greneut 
+       createList(elemets, removeListe, 'rapeVictim',  rape)
+
+       listeButton.mousePressed(()=>{
+        if(listeInput.value() ==''){
+            confirm('du kan ikke')
+        }else{
+            klassen2T.push(listeInput.value())
+            createElever(klassen2T, listeContainer)
+            listeContainer.elt.scrollTop = listeContainer.elt.scrollHeight
+        }
+          listeInput.value('')
+        })
+
+
+       
+
+        klassen2T.map(e => {
+            console.log('den ' + e)
+
+
+        })
 
     //SOUND 
-    select('#otter').mousePressed(()=>{
-        otterSound.play()
-        fireGif = createImg('./assets/fire.gif')
-        select('#page2').child(fireGif)
-        var pos = select('#otter').position()
-        console.log(pos)
-        fireGif.position(pos.x,pos.y)
-
-        var pos = select('#otter').position()
-        console.log(pos)
-        fireGif.position(pos.x,pos.y)
-        select('#otter').hide()
-        otterSound.play
-    })
-
-    rainSound = createAudio("./assets/to be bee nomalt.mp3")
-    rainSound.showControls()
-    select('#page2').child(rainSound)
-    rainSound.play()
-
-
-
-    // lyde optalse
-    // star bows micorefon
-    var mic = new p5.AudioIn()
-    mic.start()
-    // opret en ny file at gemmmer lyd i
-    audioFile = new p5.SoundFile()
-
-    recorder = new p5.SoundRecorder()
-    recorder.setInput(mic)
-
-    recBtn = select('#recBtn')
-
-    recBtn.mousePressed(()=>{
-        if(!isRecording){
-          recorder.record(audioFile)
-          isRecording = true
-          recBtn.html('STOP recording')
-        }else{
-            recorder.stop()
-            isRecording = false
-            recBtn.html('start recording')
-            setTimeout(() => {
-                 audioFile.play()
-                 save(audioFile, "myVoce.wav")
-            }, 200);
-            
-            
-        }
-    })
-
-    //speech syth
-    speakInp = select('#speakMe')
-    speakBtn = select('#speakBtn')
-
-    speakBtn.mousePressed(()=>{
-        const utterance = new SpeechSynthesisUtterance(speakInp.value())
-        utterance.lang = "ur-PK"
-        utterance.rate = 1.4
-        utterance.pitch = 1.4
-        speechSynthesis.speak(utterance)
-
-    })
-
+   
     
     //Sæt menu op
     //Hent alle sider som et array
@@ -111,4 +111,28 @@ function shiftPage(newPage){
     select(currentPage).removeClass('show')
     select(newPage).addClass('show')
     currentPage = newPage
+}
+
+function createList(list, dest, className, action){
+    //førs søre 
+    dest.html('')
+    list.map(e =>{
+        var div = createDiv(e)
+        div.addClass('className')
+
+        if(action){
+              div.mousePressed(() => {
+            action()
+        })
+        }
+        dest.child(div)
+
+    })
+    
+}
+
+
+function rape(who){
+    console.log('sebastians was call', who)
+    who.style('background-image', url("/assets"))
 }
