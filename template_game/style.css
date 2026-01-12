@@ -3,6 +3,7 @@ body{
     justify-content: center;
 
     background-color: black;
+    color: white;
     margin: 0;
 }
 #game-container{
@@ -21,8 +22,11 @@ body{
 
 .asta{
     position: absolute;
-    top: 45px;
-    left: 45px;
     width: 45px;
     
+}
+
+.stats{
+    position: absolute;
+    left: 0;
 }
