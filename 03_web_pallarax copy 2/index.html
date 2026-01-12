@@ -38,11 +38,35 @@
         </div>
 
         <div id="page3" class="page" title="Romove item">
+            <pre>
+                <code>
+                    <h2>Ma fjerner elementer i et array med funktonen splice()</h2>
+                    <p>for eksempel dette array: varr lidst = ["john", "paul", "Ringo", "George"]
+                        liste.splice(0,1)
+                        Og nu er lister: [ "paul", "Ringo", "George"]
+                    </p>
+
+                </code>
+            </pre>
             <div class="container" id="removeListe">
                 
 
 
             </div>
+        </div>
+        <div class="page" id="page4" title="Array filter">
+            <pre>
+                <code>
+                    Man kan filtere et array med funktonen filter()
+                    var names =  ["simon", "silas", "selma"]
+                    var namesWithA = names.filter( n => {
+                        return n.include('a')
+                    })
+                    console.log(namesWithA) //["silas", "selma"]
+                </code>
+            </pre>
+            <input id="birdInp" type="text">
+            <div id="bridContainer"></div>
         </div>
         
      

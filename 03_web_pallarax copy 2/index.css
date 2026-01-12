@@ -111,7 +111,7 @@ h1 {
     grid-template-rows: 1fr 1fr 8fr;
 }
 
-.page .container{
+.page .container, #bridContainer{
     width: 60vw;
     height: 40vw;
     border: 1px solid lightblue;
@@ -121,7 +121,7 @@ h1 {
     scroll-behavior: smooth;
 }
 
-.elev .rapeVictim{
+.elev{
     width: 300px;
     min-height: 300px;
     border: 1px solid lightblue;
@@ -131,16 +131,31 @@ h1 {
     background-size: cover;
 }
 
-.rapeVictim:hover{
+.removeVictim:hover{
 
 
 }
 
 
 .elev:hover{
-    transform:scale(0,8);
+    transform:scale(0.8);
     box-shadow: 10px 10px black;
     border-radius: 50%;
 }
 
+.bird{
+    width: 300px;
+    min-height: 100px;
+    background-color: black;
+    color: white;
+    border: 1px solid lightblue;
+    border-radius: 1rem;
+    font-size: 3rem;
+}
 
+#birdInp{
+    font-size: 2rem;
+    padding: 1rem;
+    line-height: 3rem;
+    
+}
