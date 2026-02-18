@@ -2,6 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
 
 
+
+@keyframes matchAnimation {
+    0% {clip-path: circle(0% at 50% 50%); scale: 1;}
+    50% {clip-path: circle(50% at 50% 50%); scale: 1.1;}
+    100% {clip-path: circle(100% at 50% 50%); scale: 1;}
+}
+
 body,
 * {
     font-family: "open sans";
@@ -64,6 +71,13 @@ h1 {
 }
 
 
+.card.matchack.back{
+    transform: rotateY('180');
+    opacity: 0,75;
+    
+}
+
+
 .card:hover{
     transform: translateY(3px);
 }
@@ -76,6 +90,7 @@ h1 {
 .card.checked{
     opacity: 0.8;
     border: 4px solid yellow;
+
 }
 
 .card img{
