@@ -17,15 +17,15 @@ var data = []       // Her gemmer vi vores rensede data (objekter med x, y, labe
 var myChart         // Her gemmer vi selve graf-objektet fra Chart.js
 
 // INDSTILLINGER FOR DATA
-var filename = './assets/dating_app_behavior_dataset.csv'
-var colX = "swipe_right_ratio"     // X-aksen: Variabel 1 (input)
-var colY = "app_usage_time_min"      // Y-aksen: Variabel 2 (input)
-var colLabel =  "gender" // Facit: Hvilken gruppe hører man til?
+var filename = './assets/penguins.csv'
+var colX = "bill_length_mm"     // X-aksen: Variabel 1 (input)
+var colY = "bill_depth_mm"      // Y-aksen: Variabel 2 (input)
+var colLabel = "species" // Facit: Hvilken gruppe hører man til?
 
 // GUI Overskrifter (Gør det pænt for brugeren)
-var mainTitle = "gender Predictor"
+var mainTitle = "species Predictor"
 var sectionTitle1 = "1. Indtast dine tal"
-var instructionText = "swipe_right_ratio og app_usage_time_min:"
+var instructionText = "bill_length_mm og bill_depth_mm:"
 var sectionTitle2 = "2. Se Resultat i Grafen"
 
 // Farver til vores grupper (Labels) - Chart.js bruger disse
@@ -103,6 +103,19 @@ function setup() {
 
         }
     })
+
+
+    //nu indsætter vi et enkely dataset med brugerens gæt
+    datasets.push({
+        label: "dit gæt",
+        data: [{x:0,y:0}],
+        pointStyle:"crossRot",
+        pointRadius: 12,
+        backgroundColor:'black',
+        borderColor: 'black',
+        borderWidth: 4
+
+    })
     console.log(' så fiker vi laver datasate gruppper', datasets)
 
     //vi vil nu oprette gafen med chart.js
@@ -124,6 +137,115 @@ function setup() {
     })
 
 
+    setupControls()
+}
+
+function setupControls() {
+    //1) find all x og y værdil i data
+    // fordo vi skal bruge 
+    var xValues = data.map(point => point.x)
+    //det her beytdsi map data sargeh og runds6tda all point.x vøredsfd
+    var yValues = data.map(point => point.y)
+    //berger minsdwe og støeref værdsai
+    var minX = Math.min(...xValues)
+   var maxX = Math.max(...xValues)
+   var minY = Math.min(...yValues)
+   var maxY = Math.max(...yValues)
+    console.log( 'her er min og max', maxX, minY, maxY, minX)
+
+    var xSlider = select("#input-x")
+    var ySlider = select("#input-y")
+
+    xSlider.attribute('min', Math.floor(minX))
+    xSlider.attribute('max', Math.ceil(maxX))
+     xSlider.attribute('step', (maxX-minX )/100)
+    xSlider.value(minX + maxX / 2)
+    //gør det smaa
+    ySlider.attribute('min', Math.floor(minY))
+    ySlider.attribute('max', Math.ceil(maxY))
+    ySlider.attribute('step', (maxY-minY )/100)
+    ySlider.value(minY + maxY / 2)
+
+    //input s
+    xSlider.input(() => select('#val-x').html(xSlider.value()))
+    ySlider.input(() => select('#val-y').html(ySlider.value()))
+
+    select('#val-x').html(xSlider.value())
+    select('#val-y').html(ySlider.value())
+
+    var kSlider = select('#k-slider')
+
+    kSlider.input(()=> select('#k-value').html(select('#k-slider').value()))
+
+
+
+
+
+    select('#predict-btn').mousePressed(classifyUnknown)
+
+}
+
+function classifyUnknown(){
+      //Aflæs værdierne fra sliderne og gem dem i to variabler 
+      var inputX = select('#input-x').value()
+       var inputY = select('#input-y').value()
+
+    //Indsæt punktet fra sliderne i grafen
+    var guessDataset = myChart.data.datasets[myChart.data.datasets.length - 1]
+    guessDataset.data = [{x:inputX, y: inputY}]
+    myChart.update()
+    console.log(inputX, inputY)
+
+
+    //Løb data igennem - altså ALLE datapunkterne - og find hver og ens afstand til vores gæt
+    data = data.map( p => {
+        //dist ligger i p5.js og den laver pythagoras for os 
+        p.distance = dist(inputX,inputY, p.x,p.y)
+        return p
+    })
+    //console.log(data)
+
+    //Så sorterer vi dem så dem med mindst afstand til gættet kommer først
+    //sort a,b tag hver punket 
+    data.sort((a,b) => a.distance -b.distance)
+
+
+
+    //Spørg de [k] nærmeste hvilken gruppe de hører til 
+    var k = select('#k-slider').value()
+    //neighbours
+    var neighbours = data.slice(0, k)
+
+
+    //De stemmer om resultatet og vinderen er fundet 
+    var votes = {}
+    neighbours.map( n  => {
+        if(votes[n.label] === undefined){
+            votes[n.label] = 0
+        }
+        votes[n.label] += 1
+    })
+
+    console.log(votes, 'her er ')
+
+    var allLabels = Object.keys(votes)
+
+
+    var Winner = allLabels[0]
+
+
+    //
+    allLabels.map( l => {
+        if(votes[l] > votes[Winner]){
+            Winner = l
+        }
+    })
+
+    //Vis i resultat feltet hvilken klasse gætte tilhører 
+
+    console.log('og winnd', Winner)
+
+    select('#Winner').html(Winner)
 
 }
 
