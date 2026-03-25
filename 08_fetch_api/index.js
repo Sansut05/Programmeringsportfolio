@@ -1,155 +1,291 @@
 var currentPage = '#page1'
 var deck
+
 var player = {
-    cards:[],
-    total:0
+    cards: [],
+    total: 0
 }
-var dealer={
-    cards:[],
-    total:0
+
+var dealer = {
+    cards: [],
+    total: 0
 }
 
 var state = "begin"
+
 //P5 setup() bliver kaldt EN gang før siden vises 
-function setup(){
-    console.log('P5 setup kaldt inshallah')
-    
+function setup() {
+    //console.log('P5 setup kaldt inshallah')
+
     //skift til current page 
     shiftPage(currentPage)
 
-    // fetce er en asynkron som kan hente date ud i byen
     getDeck()
-
+    gameRestarts()  
     
+    select('#playerDrawBnt').mousePressed(() => {
+        if (state !== "player") return;
+        drawCard("player");
+    })
+    select('#playerStandBtn').mousePressed(() => {
+        drawCard("dealer")
+        //console.log(state)
+    })
 
 
-    
     //Sæt menu op
     //Hent alle sider som et array
     var allPages = selectAll('.page')
     //Løb listen igennem en for en 
     allPages.map(
-       page => {
-        //Lav et nyt <a> element 
-        var menuItem = createElement('a')
-        //Sæt a taggets html til sidens titel
-        menuItem.html(page.attribute('title'))
-        //sæt eventlistener på a tagget
-        menuItem.mousePressed(
-            () => shiftPage('#' + page.attribute('id'))
-        )
-        //sæt a tagget ind i sidebaren
-        select('.sidebar').child(menuItem)
-       }
+        page => {
+            //Lav et nyt <a> element 
+            var menuItem = createElement('a')
+            //Sæt a taggets html til sidens titel
+            menuItem.html(page.attribute('title'))
+            //sæt eventlistener på a tagget
+            menuItem.mousePressed(
+                () => shiftPage('#' + page.attribute('id'))
+            )
+            //sæt a tagget ind i sidebaren
+            select('.sidebar').child(menuItem)
+        }
     )
-
+    console.log(player.total)
 }
-
+//Async står for asyncronous - vi ved ikke præcis hvor længe det tager at køre funktionen  
 async function getDeck() {
-    try{
-        //kan hent data fre en server ude i by
-    const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-    // resons ojekter kommer tilbage fr serveren  - og hvis resons.ok er true kan vi
-    console.log("reposten objekre",response)
-    if(response.ok){
-          const data = await response.json()
-          console.log("data vi får tilbage",data)
+    try {
+        //fetch kan hente data fra en server ude i byen 
+        const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+        //Repsonse objektet kommer tilbage fr serveren - og HVIS response.ok er true, kan vi hente data
+        //console.log("Response objektet:", response)
+        if (response.ok) {
+            const data = await response.json()
+            console.log("Data vi får tilbage: ", data)
+            deck = data
+            drawCard()
 
-          deck = data
-          drawCard()
-
-
-    }
-  
-    } catch (error){
+        }
+    } catch (error) {
         console.log(error)
-
     }
-     
 }
 
-async function drawCard(){
+async function drawCard(newState) {
+
+    if (newState) {
+        state = newState
+    }
+   // console.log("drawcard kaldt", state, dealer.total)
+    if(state == "playerLose"){
+        setTimeout(() => {
+            shiftPage("#page2")
+        }, 1500)
+        return
+    }
+
+    if (state == "dealer") {
+        //Reveal kortene
+        dealer.cards[0].hidden = false
+        showCards()
+        //Regn total af dealer ud
+        if (dealer.total < 17) {
+            var newCard = await getOneCard()
+            dealer.cards.push(newCard)
+            showCards()
+             dealer.total += Number(returnCardValue(newCard))
+             if(dealer.total < 17){
+                drawCard()
+                return
+            }
+             else if(dealer.total > 21){
+                setTimeout(() => 
+                    {shiftPage("#page3")}, 1500)
+                return
+            }
+             else{
+                drawCard()  
+                return
+            }
+           console.log("dealer total hej",dealer.total);
+        }else{
+
+            if(player.total == dealer.total){
+                setTimeout(() => 
+                    {shiftPage("#page2")}, 1500)
+                return
+            }
+
+            else if(player.total > dealer.total){
+                 setTimeout(() => 
+                    {shiftPage("#page3")}, 1500)
+                return
+            }
+            else{
+                 setTimeout(() => 
+                    {shiftPage("#page2")}, 1500)
+                 return
+            }
+            console.log("dealer total > 17")
+             return
+        }
+        
+        showCards()
+        //Træk kort indtil, hvis total => 17 eller player, stop og check om spileleren har vundet.
+
+    }
+
+    if (state == "player") {
+        //console.log('Showtime - implementer denne funktion til næste gang vi har programmering')
+        var newCard = await getOneCard()         //Træk et kort med funktionen getOneCard()
+        player.cards.push(newCard)         //push det nye kort i player.cards
+        showCards()
+        player.total += Number(returnCardValue(newCard))         //Plus kortet til total
+        console.log("nej",player.total)
+        if (player.total < 21) {       //hvis spilleren har under 21, return
+            return
+        }
+        if (player.total == 21) {         //hvis spilleren har 21, skift state til dealer og kald drawCard()
+            state = "dealer"
+            drawCard()
+        }
+        if (player.total > 21) {         //tjek om total er over 21
+            player.cards.map(c => {
+                if (c.value == "ACE") {         //tjek for es'er ved at mappe player.cards og -10 for hvert es indtil total er under 21
+                    c.value = 'ACE-used'
+                    player.total -= 10
+                    if (player.total < 21) {         //Hvis resultatet er under 21, return
+                        return
+                    }
+                    if (player.total == 21) {
+                        state = "dealer"
+                        drawCard()
+                    }
+                }
+            })
+            if (player.total > 21) {       //Hvis resultatet stadig er over 21, sæt state = "playerLose" og kald drawCard()
+                state = "playerLose"
+                drawCard()
+            }
+            console.log("Player total: ", player.total)
+        }
+
+    }
+    if (state == "begin") {
 
 
-    if(state == "begin"){
         var cardOne = await getOneCard()
+        //først ligger vi kortetenes værdi oven i spiller variablen (uden hensyn til es)
         player.cards.push(cardOne)
         var cardTwo = await getOneCard()
         player.cards.push(cardTwo)
-        // ikke vis førs dealer kores
+
+        player.total += Number(returnCardValue(cardOne))
+        player.total += Number(returnCardValue(cardTwo))
+        console.log("hej",player.total)
+
+        //nu er vi en situation hvor spillere faktisk kunne have vundet, kunne have 22(to es'er), eller bare kunne have fået et eller andet tal under 21. 
+        if (player.total == 22) {
+            player.total = 12
+        }
+
+        //Dealeres FØRSTE kort skal være skjult
         var dealerCardOne = await getOneCard()
         dealerCardOne.hidden = true
         dealer.cards.push(dealerCardOne)
         var dealerCardTwo = await getOneCard()
-            dealer.cards.push(dealerCardTwo)
-            showCards()
-        
+        dealer.cards.push(dealerCardTwo)
 
-    }
-    if(state == "dealer"){
+        //Regn dealerens kort ud for at se om de har blackjack
+        dealer.total += returnCardValue(dealerCardOne)
+        dealer.total += returnCardValue(dealerCardTwo)
 
-    }
-    if(state == "player"){
+        if (dealer.total == 22) {
+            dealer.total = 12
+        }
 
+
+        if (dealer.total == 21 && player.total == 21) {
+            select('#result').html("It's a draw")
+            setTimeout(restart, 3000)
+        }
+        if (dealer.total == 21 && player.total != 21) {
+            select('#result').html("Dealer Won")
+            setTimeout(restart, 3000)
+        }
+
+        showCards()
+        state = "player"
     }
+
+}
+    function gameRestarts(){
+        //Vis en restart knap.
+        select('#restartBtnLose').mousePressed(restart)
+
+        select('#restartBtnWin').mousePressed(restart)
 }
 
-function showCards(){
-    console.log("showCard er kalrt med:", player.cards, dealer.cards)
-    select('#player .cards').html('')
-    player.cards.map( (c, i) => {
-        var img = createImg(c.image)
-        img.style('transform',`translate(${i*40}px, ${i*40}px)`)
-        
-        select('#player .cards').child(img)
+function restart() {
+    select('#result').html('')
+    player.cards = []
+    player.total = 0
+    dealer.cards = []
+    dealer.total = 0
+    state = "begin"
+    shiftPage("#page1")
+    drawCard()
+}
 
+function showCards() {
+   //console.log("ShowCards er klar med: ", player.cards, dealer.cards)
+    select('#player .cards').html('')
+    player.cards.map((c, i) => {
+        var img = createImg(c.image)
+        img.style('transform', `translate(${i * 40}px, ${i * 40}px)`)
+        select('#player .cards').child(img)
     })
     select('#dealer .cards').html('')
-    dealer.cards.map( (c, i) => {
+    dealer.cards.map((c, i) => {
         var img
-        if(c.hidden){
+        if (c.hidden) {
             img = createImg('https://deckofcardsapi.com/static/img/back.png')
-
-        }else{
-            var img = createImg(c.image)
+        } else {
+            img = createImg(c.image)
         }
-        
-        img.style('transform',`translate(${i*40}px, ${i*40}px)`)
-        
+
+        img.style('transform', `translate(${i * 40}px, ${i * 40}px)`)
         select('#dealer .cards').child(img)
-
     })
-
 }
 
-
-function returnCardValue(card){
-    if(isNaN(card.value)){
-        
+function returnCardValue(card) {
+    if (isNaN(card.value)) {
+        if (card.value == "ACE") {
+            return 11
+        } else {
             return 10
-        }else{
-            return card.value
         }
+    } else {
+        return Number(card.value)
     }
+}
 
-//aysnc står for asyncronous - vi ved ikke præiic hvor lange det tager at køre funkisucv
-async function  getOneCard() {
-    //hent et krot
-    
-     try{
+async function getOneCard() {
+    //Hent et kort 
+    try {
         const response = await fetch(`https://deckofcardsapi.com/api/deck/${deck.deck_id}/draw/?count=1`)
         const data = await response.json()
-        console.log("drawCard kommer tilbage med et ny kort:",data)
+        console.log("DrawCard kommer tilbage med et nyt kort:", data)
         return data.cards[0]
-        
-    }catch(error){
-        console.log("eroor catcjhed",error)
+    } catch (error) {
+        console.log("Error catched", error)
     }
 
-    
 }
 
-function shiftPage(newPage){
+function shiftPage(newPage) {
     select(currentPage).removeClass('show')
     select(newPage).addClass('show')
     currentPage = newPage
