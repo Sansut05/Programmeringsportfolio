@@ -1,0 +1,254 @@
+body {
+    overflow: hidden;
+    background: #111;
+    color: white;
+}
+
+/* Sider — skjult til venstre, vist med .show */
+.page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    transition: left 0.5s ease-in-out;
+    background-size: contain;
+    background-position: center;
+        background-repeat: no-repeat;
+}
+.page.show { left: 0; }
+
+/* Overlay — centreret indhold oven på baggrund */
+.overlay {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    text-align: center;
+}
+
+/* Hint — centreret tekst i toppen af et rum */
+.hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    z-index: 10;
+}
+
+/* Hotspot — klikbart element placeret i et rum */
+.hotspot {
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 5;
+    /*background:rgba(20,200,20,0.5);*/
+}
+
+.hotspot:hover { transform: scale(1.3); }
+
+
+button { background: white; }
+
+
+/* Code-input — skjult, vises med .show */
+.code-input {
+    position: absolute;
+    inset: 0;
+    display: none;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 20;
+}
+.code-input.show { display: grid; }
+
+
+/* Timer */
+#timer {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+}
+
+/* High score liste */
+#score-list { list-style: none; }
+#score-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ---- Rum-baggrunde ---- */
+#start    { background-image: url('./assets/pyramid start.JPG'); }
+#room1    { background-image: url('./assets/tomb.jpg'); }
+#room2    { background-image: url('./assets/rome\ med\ symbol.png'); }
+#room3    { background-image: url('./assets/door.jpg'); }
+#room4    { background-image: url('./assets/trone.png'); }
+#complete { background-image: url('./assets/vunder.jpg'); }
+#tabber { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
+#tabber2 { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
+
+/* ---- Hotspot-placeringer på søjler ---- */
+#room1 #symbol1 { 
+    top: 35%; 
+    left: 46%; 
+    width:3%;
+    height:30%;
+}
+#room1 #symbol2 { 
+    top: 22%; 
+    left: 65%;
+    width:6%;
+    height:53%;
+}
+#room1 #symbol3 { 
+    top: 40%; 
+    left: 42%;
+    width:2%;
+    height:23%; 
+}
+
+#room1 #symbol4 { 
+    top: 40%; 
+    left: 40%;
+    width:2%;
+    height:20%; 
+}
+
+#room1 #symbol5 { 
+    top: 40%; 
+    left: 38%;
+    width:1%;
+    height:22%;
+     
+}
+
+#room1 #symbol6 { 
+    top: 33%; 
+    left: 53%;
+    width:4%;
+    height:32%;
+     
+}
+
+/* ---- Hotspot-placeringer på symboler ---- */
+#room2 .hotspot.active {
+    transform: scale(1.1); 
+    filter: drop-shadow(0 0 10px rgba(20,200,20,0.7)); /* Tilføj en grøn glød, når aktiv */
+    }
+
+#room2 #symbol10 {
+    position: absolute;
+    top: 26%;
+    left: 61.5%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol1.png');
+}
+
+#room2 #symbol11 {
+    position: absolute;
+    top: 26%;
+    left: 51.75%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol2.png');
+}
+
+#room2 #symbol12 {
+    position: absolute;
+    top: 26%;
+    left: 42%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol3.png');
+}
+
+#room2 #symbol13 {
+    position: absolute;
+    top: 26%;
+    left: 32.5%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol4.png');
+}
+
+#room2 #symbol14 {
+    position: absolute;
+    top: 47%;
+    left: 32.5%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol5.png');
+}
+
+#room2 #symbol15 {
+    position: absolute;
+    top: 47%;
+    left: 42%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol6.png');
+}
+
+#room2 #symbol16 {
+    position: absolute;
+    top: 47%;
+    left: 61.5%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol7.png');
+}
+
+#room2 #symbol17 {
+    position: absolute;
+    top: 47%;
+    left: 51.75%; 
+    width: 6%;
+    aspect-ratio: 1/1;
+    background-size:contain;
+    background-image: url('./assets/symbol8.png');
+}
+
+
+#room3 #symbol7 { 
+    top: 33%; 
+    left: 48%;
+    width:4%;
+    height:32%;
+     
+}
+
+#room3 #symbol8 { 
+    top: 42%; 
+    left: 68%;
+    width:4%;
+    height:32%;
+     
+}
+#room3 #symbol9 { 
+    top: 33%; 
+    left: 29%;
+    width:4%;
+    height:32%;
+     
+}
+
+
