@@ -24,8 +24,8 @@
         <div class="page" id="start" title="Start">
             <div class="overlay">
                 <h1>Escape From the Pyramide</h1>
-                <p>Du er fanget i pyramiden med noget, der fanget i mørket.<br>
-                    For hvert sekund der går, risikerer du at blive overtaget af det, som hviler i mørket </p>
+                <h5>Du er fanget i pyramiden med noget, der lurer i mørket.<br>
+                For hvert sekund der går, risikerer du at blive overtaget af det, som hviler i mørket! </h5>
                 <button id="btn-start">Start spil</button>
                 <div id="highscores">
                     <h2>High Scores</h2>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- RUM 1: Søjlerummet -->
-        <div class="page" id="room1" title="Junglen">
+        <div class="page" id="room1" title="Rummet med den skjulte udgang">
             
 
             <div id="symbol1" class="hotspot"></div>
@@ -59,13 +59,9 @@
             <div id="symbol16" class="hotspot" onclick="clickSymbol('symbol16')"></div>
             <div id="symbol17" class="hotspot" onclick="clickSymbol('symbol17')"></div>
 
-            <!-- Klikbare skyer -->
-              
-    
-
-            <!-- Input (vises når skyerne er klikket rigtigt) -->
+        <!-- Afsluttende gåde  -->
             <div id="room2-code" class="code-input">
-                <p>I fandt ingen lås.<br>
+                <p>Du fandt ingen lås.<br>
                 Alligevel vendte otte nøgler sig.<br>
                 Noget, som længe havde været lukket, gav efter.<br>
                 Hvad?</p>
@@ -75,29 +71,37 @@
             </div>
         </div>
 
+        <!-- RUM 3: Dørrummet -->
         <div class="page" id="room3" title="door">
-                <p>hhee</p>
+            <div id="room3-hint" class="hint">            
+            <p>En bøjer sig stadig for gamle guder<br>
+            En taler med mange stemmer fra dybet<br>
+            Kun en bærer spor efter den tid, hvor mennesket lod sten rejse sig mod himlen i frygt.<br>
+            Vælg forkert - og mærker vil langsomt lære dit sind at kende</p></div>  
+
                 <div id="symbol7" class="hotspot"></div>
                 <div id="symbol8" class="hotspot"></div>
-                <div id="symbol9" class="hotspot"></div>
-            
+                <div id="symbol9" class="hotspot"></div> 
         </div>
 
+            <!-- RUM 4: Tronerummet -->
         <div class="page" id="room4" title="throne">
+            <div id="room4-hint" class="hint">
             <p>Tronen står tom<br>
             Måske venter den på nogen<br>
             Måske er den bedst forladt<br>
-            Pyramiden vil huske dit valg </p>
-            <button id="sitButton">Du sætter dig på tronen</button>
+            Pyramiden vil huske dit valg </p></div>
 
-            <button id="leaveButton">Du går videre</button>
-            
+            <div class="throneButtons">
+                <button id="sitButton">Du sætter dig på tronen</button>
+                <button id="leaveButton">Du går videre</button>
+            </div>
         </div>
 
-        <!-- SLUTSIDE -->
+        <!-- VINDER SLUTSIDE -->
         <div class="page" id="complete" title="Færdig">
             <div class="overlay">
-                <h1>Du slap fri!</h1>
+                <h1>Du slap fri, men du er mærket for evigt!</h1>
                 <p id="final-time"></p>
                 <div id="save-score">
                     <input type="text" id="player-name" placeholder="Dit navn">
@@ -107,14 +111,15 @@
             </div>
         </div>
 
-             
-        <div class="page" id="tabber" title="throne">
+          <!-- TABER SLUTSIDE -->           
+        <div class="page" id="taber" title="throne">
              <div class="overlay">
+            <h1>Du er fanget i mørket. Dit sind opløses langsomt, mens noget ældre end pyramiderne ser tilbage gennem mørket</h1>
                 <button id="btn-restart-end">restart</button>
             </div>
         </div>
 
-        <div class="page" id="tabber2" title="throne">
+        <div class="page" id="taber2" title="throne">
              <div class="overlay">
                 <button id="btn-restart-end2">restart</button>
             </div>

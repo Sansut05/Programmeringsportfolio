@@ -1,7 +1,7 @@
 body {
     overflow: hidden;
-    background: #111;
-    color: white;
+    background: #181717;
+    color: #E8E2D0;
 }
 
 /* Sider — skjult til venstre, vist med .show */
@@ -24,19 +24,19 @@ body {
     place-items: center;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-
     text-align: center;
 }
 
-/* Hint — centreret tekst i toppen af et rum */
+/* Hint — centreret tekst i bunden af et rum medmindre andet er kodet */
 .hint {
     position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
-    z-index: 10;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: #E8E2D0;
 }
 
 /* Hotspot — klikbart element placeret i et rum */
@@ -51,8 +51,20 @@ body {
 .hotspot:hover { transform: scale(1.3); }
 
 
-button { background: white; }
+button { 
+    background: #B8860B;
+    color: #1E1E1E;}
 
+
+.throneButtons {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);      
+    display: flex;
+    gap: 1rem; 
+    z-index: 10;
+}
 
 /* Code-input — skjult, vises med .show */
 .code-input {
@@ -95,8 +107,8 @@ button { background: white; }
 #room3    { background-image: url('./assets/door.jpg'); }
 #room4    { background-image: url('./assets/trone.png'); }
 #complete { background-image: url('./assets/vunder.jpg'); }
-#tabber { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
-#tabber2 { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
+#taber { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
+#taber2 { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
 
 /* ---- Hotspot-placeringer på søjler ---- */
 #room1 #symbol1 { 
@@ -144,8 +156,14 @@ button { background: white; }
 /* ---- Hotspot-placeringer på symboler ---- */
 #room2 .hotspot.active {
     transform: scale(1.1); 
-    filter: drop-shadow(0 0 10px rgba(20,200,20,0.7)); /* Tilføj en grøn glød, når aktiv */
+    filter: drop-shadow(0 0 10px rgba(20,200,20,0.7)); /* Tilføjer en grøn glød, når den er aktiv */
     }
+
+#room2{
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.2;
+}
 
 #room2 #symbol10 {
     position: absolute;
@@ -251,4 +269,14 @@ button { background: white; }
      
 }
 
+#room4 {
+    position: relative;
+}
 
+#room4 .hint {
+    margin-top: 7rem;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}

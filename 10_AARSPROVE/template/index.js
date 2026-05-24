@@ -13,8 +13,6 @@ var symbolsFound = 0
 // Rum 2: rigtig rækkefølge og tæller
 
 
-//var symbols = ['symbol10', 'symbol11', 'symbol12', 'symbol13', 'symbol14', 'symbol15', 'symbol16', 'symbol17']
-
 
 
 
@@ -44,8 +42,8 @@ function setup() {
     select('#room1 #symbol5').mousePressed(() => findSymbol('#room1 #symbol5'))
     select('#room1 #symbol6').mousePressed(() => findSymbol('#room1 #symbol6'))
     select('#room3 #symbol7').mousePressed(() => findSymbol('#room3 #symbol7'))
-     select('#room3 #symbol8').mousePressed(() => findSymbol('#room3 #symbol8'))
-     select('#room3 #symbol9').mousePressed(() => findSymbol('#room3 #symbol9'))
+    select('#room3 #symbol8').mousePressed(() => findSymbol('#room3 #symbol8'))
+    select('#room3 #symbol9').mousePressed(() => findSymbol('#room3 #symbol9'))
 
 
     //rum 2: dør
@@ -75,7 +73,7 @@ function shiftPage(newPage) {
     select(currentPage).removeClass('show')
     select(newPage).addClass('show')
     currentPage = newPage
-    if(currentPage == '#tabber') {
+    if(currentPage == '#taber') {
         stopTimer()
       
     }
@@ -87,7 +85,7 @@ function shiftPage(newPage) {
 //tæller ned hvert sekund 
 function startTimer() {
 
-    seconds =6
+    seconds = 120
 
     timerInterval = setInterval(() => {
 
@@ -116,19 +114,13 @@ function stopGamer() {
 
         stopTimer()
 
-        shiftPage('#tabber')
+        shiftPage('#taber')
 
     }
 
 }
 
-//function loseGame() {
 
-   // console.log("DU TABTE")
-   // if(currentPage == '#tabber') {
-     //   stopTimer()
-    //    stopGamer()
-   // }}
 
 // Symbolernes status fra start, false=slukket
 var active = {
@@ -195,9 +187,8 @@ function clickSymbol(id){
         toggle('symbol10');
     }
 
-    checkWin();
+    checkAllSymbols();
 }
-
 
 // skifter symbolernes status mellem tændt ogslukket 
 function toggle(id){
@@ -218,9 +209,8 @@ function toggle(id){
     }
 }
 
-
-// Tjekker om alle er aktive/tændte
-function checkWin(){
+// Tjekker om alle symboler er tændte
+function checkAllSymbols(){
 
     if(
         active.symbol10 &&
@@ -233,7 +223,6 @@ function checkWin(){
         active.symbol17
     ){
         
-
         setTimeout(() => {
             select('#room2 #room2-code').addClass('show')
         }, 1500);
@@ -254,10 +243,9 @@ function startGame() {
 }
 
 // ============================================
-// RUM 1: FIND DEN RIGTIGE SYMBOL PÅ SØJLE
+// RUM 1: FIND DEN RIGTIGE SYMBOL PÅ SØJLE ELLERS MISTER MAN TID
 // ============================================
 
-// find den rigtige symbol ellers mister man tid
 function findSymbol(id) {
     select(id).hide()
     if(id.includes('symbol1')) {
@@ -277,7 +265,7 @@ function findSymbol(id) {
 document.getElementById("sitButton").addEventListener("click", function(){
 
     console.log("Du sætter dig på tronen")
-    shiftPage('#tabber')
+    shiftPage('#taber')
 
 
 })
@@ -349,8 +337,7 @@ function resetGame() {
     select('#timer').html('0 sek')
 
     // Nulstil rum 1
-   // select('#room1-found').html('Fundet: 0 / 3')
-    //select('#room1-hint').html('Find de 3 skjulte symboler i junglen...')
+  
     select('#room1 #symbol1').show()
     select('#room1 #symbol2').show()
     select('#room1 #symbol3').show()
