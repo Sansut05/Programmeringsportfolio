@@ -50,11 +50,9 @@ body {
 
 .hotspot:hover { transform: scale(1.3); }
 
-
 button { 
     background: #B8860B;
     color: #1E1E1E;}
-
 
 .throneButtons {
     position: absolute;
@@ -76,7 +74,6 @@ button {
     z-index: 20;
 }
 .code-input.show { display: grid; }
-
 
 /* Timer */
 #timer {
@@ -110,7 +107,7 @@ button {
 #taber { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
 #taber2 { background-image: url('./assets/taber\ nyarlathotep.jpg'); }
 
-/* ---- Hotspot-placeringer på søjler ---- */
+/* ---- Room1 - Hotspot-placeringer på søjler ---- */
 #room1 #symbol1 { 
     top: 35%; 
     left: 46%; 
@@ -153,7 +150,7 @@ button {
      
 }
 
-/* ---- Hotspot-placeringer på symboler ---- */
+/* ---- Room2 - Hotspot-placeringer på symboler ---- */
 #room2 .hotspot.active {
     transform: scale(1.1); 
     filter: drop-shadow(0 0 10px rgba(20,200,20,0.7)); /* Tilføjer en grøn glød, når den er aktiv */
@@ -245,7 +242,7 @@ button {
     background-image: url('./assets/symbol8.png');
 }
 
-
+/* ---- Room3 - Hotspot-placeringer på døre ---- */
 #room3 #symbol7 { 
     top: 33%; 
     left: 48%;
@@ -269,6 +266,7 @@ button {
      
 }
 
+/* ---- Room4 - Placering af tekst ---- */
 #room4 {
     position: relative;
 }

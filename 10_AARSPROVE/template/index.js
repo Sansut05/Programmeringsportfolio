@@ -10,12 +10,6 @@ var seconds = 0
 // Rum 1: antal fundne symboler
 var symbolsFound = 0
 
-// Rum 2: rigtig rækkefølge og tæller
-
-
-
-
-
 var throneClicked = false
 // Firestore reference
 var scoresRef = db.collection('highscores')
@@ -47,7 +41,6 @@ function setup() {
 
 
     //rum 2: dør
-  
     select('#room2 #room2-submit').mousePressed(() => {
         checkRoom2Answer()
     })
@@ -64,7 +57,6 @@ function setup() {
         resetGame()
     })  
 }
-
 
 // ============================================
 // SHIFTPAGE — skifter mellem rum/sider
@@ -120,8 +112,6 @@ function stopGamer() {
 
 }
 
-
-
 // Symbolernes status fra start, false=slukket
 var active = {
 
@@ -134,7 +124,6 @@ var active = {
     symbol16:false,
     symbol17:false
 };
-
 
 // Når spilleren klikker så skifter de enkelte symboler status efter et bestemt mønster
 function clickSymbol(id){
@@ -229,7 +218,6 @@ function checkAllSymbols(){
     }
 }
 
-
 // ============================================
 // START SPIL
 // ============================================
@@ -277,9 +265,8 @@ document.getElementById("leaveButton").addEventListener("click", function(){
 
 })
 
-
 // ============================================
-// RUM 2: KLIK SYMBOLER I  DEN RIGTIGE RÆKKEFØLGE
+// RUM 2: CHECK GÅDE OG AFSLUT SPILLET
 // ============================================
 
 function checkRoom2Answer() {
@@ -287,16 +274,12 @@ function checkRoom2Answer() {
     if (answer.includes('porten')) {
         gameState = 2
         stopTimer()
-        select('#final-time').html('Din tid: ' + seconds + ' sekunder')
+        select('#final-time').html('Din tid: ' + (120 - seconds) + ' sekunder')
         shiftPage('#complete')
     } else {
         select('#room2 #room2-error').html('Ikke helt - prøv igen!')
     }
 }
-
-
-
-// rum 3 der skal være på en tron hvor man kan går vinder eller eller satv sig vinder,ved hjælpe af box for af tage et vallg
 
 // ============================================
 // HIGH SCORE (Firestore)
@@ -320,11 +303,11 @@ function saveHighScore() {
         select('#player-name').attribute('placeholder', 'Skriv dit navn først!')
         return
     }
-    console.log('Du trykkede Gem! Navn:', name, '— Tid:', seconds, 'sek')
+    console.log('Du trykkede Gem! Navn:', name, '— Tid:', 120 - seconds, 'sek')
     console.log('TODO: Åbn firebase.js og indsæt jeres Firebase-config. Derefter virker scoresRef.add() og gemmer data i Firestore.')
 
     //Udkommenter linjen herunder når firebase.js er sat op:
-    scoresRef.add({ name: name, seconds: seconds }).then(() => {
+    scoresRef.add({ name: name, seconds: 120 - seconds }).then(() => {
         select('#btn-save').attribute('disabled', true)
          select('#btn-save').html('Gemt!')
      })
