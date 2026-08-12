@@ -309,7 +309,7 @@ function saveHighScore() {
     //Udkommenter linjen herunder når firebase.js er sat op:
     scoresRef.add({ name: name, seconds: 120 - seconds }).then(() => {
         select('#btn-save').attribute('disabled', true)
-         select('#btn-save').html('Gemt!')
+        select('#btn-save').html('Gemt!')
      })
 }
 
