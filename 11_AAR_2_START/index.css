@@ -24,12 +24,14 @@ body,
     transition: all .6s ease-in-out;
 }
 #page1{
-    background-color: blue;
+    background-color: olive;
 }
 #page2{
-    background-color: purple;
+    background-color:   blanchedalmond;
 }
-
+#page3{
+    background-color: whitesmoke;
+}
 #msg{
     text-shadow: 4px 4px 12px white;
 }
@@ -50,9 +52,35 @@ body,
     border-radius: 1rem;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
     transition: top 1s ease-in-out;
+    z-index: 4000;
+}
+
+#toast2{
+    opacity: 0;
+    height: auto;
+    min-height: 8rem;
+    max-width: 90vw; 
+    background-color: orange;
+    position: fixed;
+    top: -12rem;
+    right: 2rem;
+    padding:1rem;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    transition: top 1s ease-in-out;
+    z-index: 4000;
+    overflow-wrap: break-word; 
+    text-align: center;
 }
 
 #toast.toastShow{
     top:2rem;
+}
 
+#toast2.toastShow{
+    opacity: 1;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    right: auto;
 }

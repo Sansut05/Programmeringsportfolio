@@ -21,9 +21,9 @@ function setup(){
 
     client.on('message', (topic, msg) => {
         console.log(topic,msg)
-        mgs = msg.toString()
+        msg = msg.toString()
         if(topic.includes('page')){
-            console.log('nu skal der skifes side')
+            console.log('nu skal der skiftes side')
             //er det et tal
             msg = '#page' + msg
             shiftPage(msg)
@@ -33,8 +33,14 @@ function setup(){
 
         
         if(topic == 'silas'){
-            select('#msg').elt.textContent ='besker på topic' + topic + 'med teksten' + msg
-
+            var toast = select('#toast2')
+            toast.html(msg.toString())    // ← HER bliver beskeden til toast-tekst
+            toast.addClass('toastShow')   // ← viser boksen
+            setTimeout(() => {
+            toast.removeClass('toastShow')
+            console.log("kom silas med")
+            },  5000)
+           // select('#toast').elt.textContent = msg.toString()
         }
     })
 

@@ -20,15 +20,17 @@ function setup(){
     select('#btn1').mousePressed(()=>{
         client.publish('silas/page', '1')
     })
+    
     select('#btn2').mousePressed(()=>{
-        client.publish('silas', 'open')
+        client.publish('silas/page', '3')
+        var tekst = select('#besked').elt.value
+        client.publish('silas', tekst)
     })
+
     select('#btn3').mousePressed(()=>{
         client.publish('silas/page', '2')
     })
-   
 
-    client.publish()
 
 }
 

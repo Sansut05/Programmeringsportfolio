@@ -24,11 +24,12 @@ body,
     transition: all .6s ease-in-out;
 }
 #page1{
-    background-color: blue;
+    background-color: ghostwhite;
 }
 #page2{
-    background-color: purple;
+    background-color: olive;
 }
+
 
 #msg{
     text-shadow: 4px 4px 12px white;
@@ -38,13 +39,17 @@ body,
     top: 0;
 }
 
+#besked{
+    width: 25%;
+    height: 40%;
+}
 
 #toast{
     width:20rem ;
     height: 8rem;
     background-color: orange;
     position: fixed;
-    top: -12rem;
+    top: -42rem;
     right: 2rem;
     padding:1rem;
     border-radius: 1rem;
