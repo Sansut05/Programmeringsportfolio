@@ -1,7 +1,11 @@
 var client 
 
 function setup(){
-    //mqtt er et objekt vi får fra mqtt bilbioteket i html siden 
+
+    shiftPage('#page')
+    //mqtt er et objekt vi får fra mqtt bilbioteket i html siden
+    
+    createCard('her er texske',"https://www.clipartmax.com/png/small/64-649852_i-am-starting-a-project-which-is-making-pokemon-silhouettes-whos-that.png",   "#cards")
     client = mqtt.connect('wss://mqtt.nextservices.dk')
 
     client.on('connect', msg => {
@@ -48,7 +52,7 @@ function setup(){
 
 }
 
-var currentPage = "#page1"
+var currentPage = "#page5"
 var readyToShift = true
 function shiftPage(newPage){
     if(readyToShift){
@@ -62,3 +66,20 @@ function shiftPage(newPage){
     }
 
 }
+
+
+function createCard(text, img, destId){
+    console.log(img)
+    var containerDiv = createDiv().addClass('container')
+    var topDiv = createDiv().addClass('tope')
+    var newImg = createImg(img)
+    topDiv.child(newImg)
+    var bottomDiv = createDiv('text').addClass('bottom')
+    containerDiv.child(topDiv)
+    containerDiv.child(bottomDiv)
+    select(destId).child(containerDiv)
+
+}
+
+
+
