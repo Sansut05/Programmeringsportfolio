@@ -39,3 +39,29 @@
     display: grid;
 }
 
+.card{
+    height: 100%;
+    width: 100%;
+
+}
+
+
+.card img{
+    width: 100%;
+
+}
+.card h2{
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+.card p{
+    font-size: 1rem;
+}
+body, * {
+    margin: 0;
+    overflow: hidden;
+      box-sizing: border-box;
+}

@@ -60,8 +60,31 @@ function stopTimer() {
     console.log('timer done')
 }
 
+// det skal væren en hent fra jeson
+async function getJSON(endpoint){
+    //Vi starter med at konta sever med et requstst
+    var res 
+    try{
+        res = await fetch(endpoint)
+    }catch(err){
+        console.log(err)
+    }
+    //Hvis response er ok, henter vi json data 
+    var json = await res.json()
+    console.log('henta post fra fryhJosn',json ) 
+    return json
+}
 
+function createCard(title="", text="", image=""){
+    var card = createDiv().addClass('card')
+    card.child(createImg(image))
+    card.child(createElement('h2',title))
+    card.child(createElement('p', text))
+    return card
+   
 
+  
+}
 
 
 
