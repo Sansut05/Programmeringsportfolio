@@ -14,7 +14,7 @@ function showToast(txt, timeout=2000, type='notify'){
 
 // Skifter til en ny side uden andre ting
 // Parametre: newId = id på den nye side, der skal vises, fromId = id på den side, der skiftes fra, className = den CSS-class der bruges til at vise siden
-function shiftPage(newId, fromId = currentPage, className = 'show'){
+function shiftPage(newId, fromId = currentPage="#page1", className = 'show'){
     select(fromId).removeClass(className)
     select(newId).addClass(className)
     currentPage = newId

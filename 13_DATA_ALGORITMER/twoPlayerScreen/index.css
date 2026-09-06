@@ -25,6 +25,9 @@ body {
 #playerA img, #playerB img{
     width:100px;
 }
+#players .selected{
+    border:8px solid yellow;
+}
 #characters{
     display: grid;
     grid-template-columns: repeat(12, 1fr);

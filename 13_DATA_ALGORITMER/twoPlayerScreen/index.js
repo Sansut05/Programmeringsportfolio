@@ -1,38 +1,75 @@
 //array med alle rick and morty karaktererne
-var chars = []
-//mqtt wket takk 
-var client
-//
-var topic = "karaktervalg"
+var characters = []
+//mqtt "walkie talkie" kalder vi for client 
+var client 
+//topic er det mqtt emne vi skal bruge
+var topic = "coc"
+
+//to globale variable der holder styr på hvilken karakter billede spillrne har valgt
+var playerAIndex = 0 
+var playerBIndex = 0 
+
+
 function setup() {
     // Hent kataloget, lyt på MQTT og opdatér fællesskærmen her.
-    getChars()
+    getCharacters()
     //init mqtt
     client = mqtt.connect('wss://mqtt.nextservices.dk')
-    client.on('connect', ()=>{
-        showToast('forbunt tiil mqtt')
+    client.on('connect', () => {
+        showToast('Forbundet til MQTT')
         client.subscribe(topic)
     })
     client.on('message', (topic, ms) => {
-        showToast(`modto bese:${ms.toString()}`)
+        console.log("Ny besked, status er at playerAIndex er " + playerAIndex + " og playerBIndex er " + playerBIndex)
+        showToast(`Modtog besked: ${ms.toString()}`)    
         var msObject = JSON.parse(ms.toString())
-        console.lof(msObject.name)
-    })
+        if(msObject.action == "choose character"){
+            select(`#player${msObject.name}`).addClass('selected')
+        }
 
-   
-    
+        if(msObject.action == "select"){
+            select(`#player${msObject.name}`).addClass('selected')
+            showToast(`player${msObject.name} har valgt`)
+        }
+        if(msObject.action == "forward"){
+            //hent variablen emd det rigtige index og tæl dem op og læg dem i
+            var i = eval(`player${msObject.name}Index++`)
+            //skift billede
+            select(`#player${msObject.name} img`).attribute("src", characters[i].image)
+            select(`#player${msObject.name} h2`).html(characters[i].name)
+        }
+        if(msObject.action == "back"){
+            //hent variablen emd det rigtige index og tæl dem op og læg dem i
+            var i = eval(`player${msObject.name}Index--`)
+            console.log(i)
+            //skift billede
+            select(`#player${msObject.name} img`).attribute("src", characters[i].image)
+            select(`#player${msObject.name} h2`).html(characters[i].name)
+        }
+    } )
+
 }
 
-async function getChars(){
-   var chars =  await getJSON('https://rickandmortyapi.com/api/character?page=1')
-   showChars(chars.results)
+async function getCharacters(){
+    //Vi starter med at hente karakterne i Rick Morty API
+    characters = await getJSON('https://pokeapi.co/api/v2/pokemon?limit=20')
+    //sæt den globale variabel characters til at være arrayet med karakterer 
+    characters = characters.results
+
+    characters.map((pokemon, index)=>{
+        pokemon.image =
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
+    } )
+    select('#playerA img').attribute("src", characters[0].image)
+    select('#playerA h2').html(characters[0].name)
+    select('#playerB img').attribute("src", characters[0].image)
+    select('#playerB h2').html(characters[0].name)
+    showCharacters(characters)
 }
 
-
-function showChars(chars){
-    chars.map(c =>{
-      var card = createCard( c.name, c.species, c.image)
-      select('#characters').child(card)
-    })
-
+function showCharacters(characters){
+    characters.map( c => {
+        var card = createCard(c.name, c.species, c.image)        
+        select('#characters').child(card)
+    })    
 }
