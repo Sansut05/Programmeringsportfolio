@@ -3,9 +3,9 @@ var currentPage = '#page1'
 
 function setup(){
     console. log('P5 setup kaldt ')
- //hent all side som et array
+ //hent all sider som et array
  var allPages = selectAll('.page')
- //løb listen igemmen en for en 
+ //løb listen igennem en for en 
     allPages.map(
         (page) => {
             //lave et ny <a> element
