@@ -7,7 +7,7 @@ var bSound
 var currentPage='#page1'
 
 async function setup() {
-    bSound = await loadSound("/api_lib/sounds/dragon-studio-censor-beep-3-372460.mp3")
+    bSound = await loadSound("../api_lib/sounds/dragon-studio-censor-beep-3-372460.mp3")
   var c = createCanvas(windowWidth, windowHeight)
   select('#page2').child(c)
   select('#startButton').mousePressed(()=> {
