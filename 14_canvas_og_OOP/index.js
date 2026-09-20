@@ -23,6 +23,11 @@ async function setup() {
     userStartAudio() //starter lyd eller blokerer browseren for funktionaliteter. kunne fx ikke restarte uden//
     shiftPage('#page2')
   })
+    select('#saveHighscore').mousePressed(()=> {
+    var n = select('#name').value()
+    console.log(n, points)
+    fb.save(n, points)
+  })
 
   // Getting 'Info' div in js hands
 var info = document.getElementById('info');
@@ -56,6 +61,14 @@ addEventListener('mousemove', tellPos, false)
 
 function updateHighscore(scores){
 console.log('got result',scores)
+var HS = select('#highScore')
+  HS.html('')
+  scores.map(p => {
+    HS.child(
+      createElement('p', `${p.name}: ${p.points}`)
+    )
+  })
+  select('#name').value('')
 }
 
 function draw() {
